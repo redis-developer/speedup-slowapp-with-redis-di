@@ -20,7 +20,7 @@ This repository demonstrates how to install, deploy, and use RDI with a realisti
 
 ## Deploying RDI
 
-For this demo, you'll need a Kubernetes (K8S) cluster to deploy Redis Data Integration (RDI). This workflow ensures all dependencies (Ingress, database, and RDI) are managed and deployed in the correct order, with secure configuration and easy cleanup. Though you can use any K8S distribution, you don't need a production-ready K8S cluster. Any local K8S deployment will suffice. Development clusters of K8S, like Minikube, K3S, or Docker Desktop, will do just fine.
+For this demo, you'll need a Kubernetes (K8S) cluster to deploy Redis Data Integration (RDI). This workflow ensures all dependencies (Ingress, database, and RDI) are managed and deployed in the correct order, with secure configuration and easy cleanup. Though you can use any K8S distribution, you don't need a production-ready K8S cluster. Any local K8S deployment will suffice. Development clusters of K8S, like [Minikube](https://minikube.sigs.k8s.io/docs/start), [K3S](https://k3s.io), or [Docker Desktop](https://docs.docker.com/desktop/features/kubernetes), will do just fine.
 
 Once your K8S cluster is ready, deployment is automated using shell scripts in the `rdi-deploy` folder.
 
