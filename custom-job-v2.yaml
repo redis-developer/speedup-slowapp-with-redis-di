@@ -1,0 +1,24 @@
+name: custom-job
+source:
+  schema: public
+  table: user
+transform:
+  - uses: add_field
+    with:
+      expression: first_name || ' ' || last_name
+      field: display_name
+      language: sql
+  - uses: add_field
+    with:
+      expression:
+        CASE
+          WHEN email LIKE '%@example.com' THEN 'internal'
+          ELSE 'external'
+        END
+      field: user_type
+      language: sql
+output:
+  - uses: redis.write
+    with:
+      connection: target
+      data_type: json

@@ -1,0 +1,9 @@
+name: custom-job
+source:
+  schema: public
+  table: users
+output:
+  - uses: redis.write
+    with:
+      connection: target
+      data_type: json

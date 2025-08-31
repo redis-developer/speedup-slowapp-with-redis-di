@@ -1,0 +1,21 @@
+sources:
+  psql:
+    type: cdc
+    logging:
+      level: info
+    connection:
+      type: postgresql
+      host: localhost
+      port: 5432
+      database: postgres
+      user: postgres
+      password: postgres
+
+targets:
+  target:
+    connection:
+      type: redis
+      host: ${REDIS_DATABASE_HOST}
+      port: ${REDIS_DATABASE_PORT}
+      user: default
+      password: See_H0w_Fast_Fee1s
