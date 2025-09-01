@@ -8,7 +8,7 @@ You can use [Redis Data Integration (RDI)](https://redis.io/data-integration) fo
 
 This repository demonstrates how to install, deploy, and use RDI with a fairly realistic use case. You start with a [PostgreSQL](https://www.postgresql.org) database running on-premises containing data from an e-commerce, and you use RDI to continuously move data to a Redis database running on [Redis Cloud](https://redis.io/cloud).
 
-## Requirements
+## 📋 Requirements
 
  * Docker: https://docs.docker.com/get-started/get-docker
  * Kubernetes: https://kubernetes.io/releases/download
@@ -17,14 +17,14 @@ This repository demonstrates how to install, deploy, and use RDI with a fairly r
  * Redis Insight: https://redis.io/insight
  * Redis Cloud: https://redis.io/try-free
 
-## Deploying RDI
+## 🚀 Deploying RDI
 
 To deploy RDI, you'll need a Kubernetes (K8S) cluster. This workflow ensures all dependencies (Ingress, database, and RDI) are managed and deployed in the correct order, with secure configuration and easy cleanup. Though you can use any K8S distribution, you don't quite need a production-ready K8S cluster. Any local K8S deployment will suffice. Development clusters of K8S, like [Minikube](https://minikube.sigs.k8s.io/docs/start), [K3S](https://k3s.io), or [Docker Desktop](https://docs.docker.com/desktop/features/kubernetes), will do just fine.
 
 Once your K8S cluster is ready, deployment is automated using shell scripts in the `rdi-deploy` folder.
 
 
-### 1. Running RDI on K8S with a Local Database
+### 1. 🏠 Running RDI on K8S with a Local Database
 
 This option deploys RDI on K8S along with its backend database. This is ideal if you want an all-inclusive installation of RDI. This option also saves you from spinning up a database on Redis Cloud, which can incur costs.
 
@@ -84,7 +84,7 @@ cd rdi-deploy
 ./rdi-undeploy-localdb.sh
 ```
 
-### 2. Running RDI on K8S with a Database on Redis Cloud
+### 2. ☁️ Running RDI on K8S with a Database on Redis Cloud
 
 This option deploys RDI on K8S and a backend database running on Redis Cloud. This is ideal if you want an RDI installation with a database that can scale to your needs, especially if you plan to extend this workload to perform intensive data processing from a source database.
 
@@ -163,7 +163,7 @@ cd rdi-deploy
 ./rdi-undeploy-clouddb.sh
 ```
 
-## Running the source database
+## 🐘 Running the source database
 
 This project contains a [PostgreSQL](https://www.postgresql.org) database with an e-commerce dataset that will be used as source data. You must get this database up and running to play with this demo. In the folder `source-db`, you will find a Docker Compose file that will spin up the database and load with data, as well as an instance of [pgAdmin](https://www.pgadmin.org) you can use to access the database.
 
@@ -210,7 +210,7 @@ Once you have done with this demo, you can stop the services:
 docker compose down
 ```
 
-## Creating the target database
+## 🎯 Creating the target database
 
 The target database will be the Redis database, which will receive the data from RDI. In this use case, the target database represents the database from which your application will read the data, regardless of whether the data was written into the PostgreSQL database. You are going to create this database on Redis Cloud using Terraform. The target database is slightly different from the one used by RDI. It requires fewer resources and doesn't need persistence enabled. For this reason, the Terraform code used will not require a paid database on Redis Cloud; it will use the free plan available for all Redis Cloud users.
 
@@ -250,9 +250,11 @@ Once you have done with this demo, you can destroy the database:
 terraform destroy -auto-approve
 ```
 
-## Playing with the demonstration
+## ⚡ Using RDI for data streaming
 
-Now that everything has been properly deployed, you can start the fun part: playing with RDI to move data around. In this section, you will:
+Now that everything has been properly deployed, you can start the fun part—using with RDI to stream database changes.
+
+In this section, you will:
 
 * Investigate your current dataset using pgAdmin.
 * Use Redis Insight to access your RDI deployment.
