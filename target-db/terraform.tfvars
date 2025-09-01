@@ -1,4 +1,4 @@
-application_prefix = "speedup-slowdb-with-redis-di"
+application_prefix = "speedup-slowapp-with-redis-di"
 subscription_name  = "targetdb"
 database_name      = "targetdb"
 
