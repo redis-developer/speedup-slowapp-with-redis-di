@@ -212,7 +212,7 @@ docker compose down
 
 ## Creating the target database
 
-The target database will be the Redis database, which will receive the data from RDI. In this use case, the target database represents the database from which your application will read the data, regardless of whether the data was written into the PostgreSQL database. You are going to create this database on Redis Cloud using Terraform. This database is slightly different from the one used by RDI. It requires fewer resources and doesn't need persistence enabled. For this reason, the Terraform code used will not require a paid database on Redis Cloud; it will use the free plan available for all Redis Cloud users.
+The target database will be the Redis database, which will receive the data from RDI. In this use case, the target database represents the database from which your application will read the data, regardless of whether the data was written into the PostgreSQL database. You are going to create this database on Redis Cloud using Terraform. The target database is slightly different from the one used by RDI. It requires fewer resources and doesn't need persistence enabled. For this reason, the Terraform code used will not require a paid database on Redis Cloud; it will use the free plan available for all Redis Cloud users.
 
 To create the target Redis database:
 
