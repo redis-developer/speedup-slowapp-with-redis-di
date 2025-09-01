@@ -222,7 +222,7 @@ To create the target Redis database:
 	cd target-db
 	```
 
-2. Edit the file `terraform.tfvars` and update the variables `essentials_plan_cloud_provider` and `essentials_plan_cloud_region`.
+2. Edit the file `target-db/terraform.tfvars` and update the variables `essentials_plan_cloud_provider` and `essentials_plan_cloud_region` with the options of your choice.
 
 3. Initialize Terraform:
 
