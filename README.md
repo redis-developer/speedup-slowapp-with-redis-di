@@ -242,7 +242,7 @@ To create the target Redis database:
 	terraform output
 	```
 
-	This will show the host, port, and password for your new Redis database.
+	This will show the host and port from your new target database.
 
 Once you have done with this demo, you can destroy the database:
 
