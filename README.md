@@ -1,4 +1,4 @@
-# Speed up your Slow Database with Redis Data Integration (RDI)
+# Speed up your Slow App with Redis Data Integration (RDI)
 
 Developers often use disk-based databases (PostgreSQL, MongoDB, and Oracle) as the single source of truth for data because they offer widely adopted programming models. However, despite their popularity, most suffer from one fundamental problem: the database becomes slower as more data is stored. To mitigate this problem, [Redis](https://redis.io/open-source) is often used as a cache layer to speed read queries and offload the database to handle transactions only. With this approach, it helps companies to save money by eliminating the usage of read replicas. But how do we continuously move the data from the database to Redis without writing tons of code, using different distributed systems, and wasting lots of time?
 
