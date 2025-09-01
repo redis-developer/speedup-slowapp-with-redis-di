@@ -257,8 +257,7 @@ Now that everything has been properly deployed, you can start the fun part: play
 * Investigate your current dataset using pgAdmin.
 * Use Redis Insight to access your RDI deployment.
 * Deploy a RDI pipeline to stream data to Redis.
-* Use Redis Insight to verify if data is ready.
-* Change the pipeline to perform custom jobs.
+* Use Redis Insight to verify if data is available.
 
 Open a browser and point to `http://localhost:8888`.
 
