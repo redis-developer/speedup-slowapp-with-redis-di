@@ -300,11 +300,11 @@ redis_database_host = "redis-00000.c84.us-east-1-2.ec2.redns.redis-cloud.com"
 redis_database_port = "00000"
 ```
 
-Once you have finished updating the variables, go ahead and deploy the pipeline. This process may take a few minutes, as RDI performs an initial snapshot of the source database to create a data stream for each table found and start the replication. Once the process finishes, you should be able to navigate to the `Pipeline Status` tab to check the status of your pipeline.
+Once you have finished updating the variables, go ahead and deploy the pipeline. This process may take a few minutes, as RDI performs an initial snapshot of the source database to create a data stream for each table found and start the streaming. Once the process finishes, you should be able to navigate to the `Pipeline Status` tab to check the status of your pipeline.
 
 ![Pipeline status!](/images/ri-pipeline-status.png "Pipeline status")
 
-The pipeline should report `78` records inserted into the target database and a unique counter for each source table viewed as a data stream. This means your RDI deployment is working as expected. At this point, whatever data you write into the source database will be automatically replicated to Redis almost instantly. You can verify this by accessing your target database in Redis Cloud.
+The pipeline should report `78` records inserted into the target database and a unique counter for each source table viewed as a data stream. This means your RDI deployment is working as expected. At this point, whatever data you write into the source database will be automatically streamed to Redis almost instantly. You can verify this by accessing your target database in Redis Cloud.
 
 Access your database using the Redis Cloud console. Then click `Connect` and `Open in desktop`.
 
