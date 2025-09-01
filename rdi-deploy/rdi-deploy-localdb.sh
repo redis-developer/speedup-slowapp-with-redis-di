@@ -22,21 +22,48 @@ fi
 RE_LASTEST_VERSION=`curl --silent https://api.github.com/repos/RedisLabs/redis-enterprise-k8s-docs/releases/latest | grep tag_name | awk -F'"' '{print $4}'`
 kubectl apply -f https://raw.githubusercontent.com/RedisLabs/redis-enterprise-k8s-docs/$RE_LASTEST_VERSION/bundle.yaml -n rdi
 
-kubectl apply -f rdi-rec.yaml -n rdi
-
-# Wait for any pod with prefix redis-enterprise-cluster to be created
-echo "Waiting for a pod with prefix redis-enterprise-cluster to be created..."
+echo "Waiting for Redis Enterprise operator to be ready..."
 for i in {1..60}; do
-  POD_NAME=$(kubectl get pods -n rdi --no-headers -o custom-columns=:metadata.name | grep '^redis-enterprise-cluster' | head -n 1)
-  if [ -n "$POD_NAME" ]; then
-    echo "Pod $POD_NAME is created."
+  STATUS=$(kubectl get deployment redis-enterprise-operator -n rdi -o jsonpath="{.status.readyReplicas}" 2>/dev/null)
+  if [ "$STATUS" == "1" ]; then
+    echo "Redis Enterprise operator is ready."
     break
   fi
   sleep 5
 done
 
-if [ -z "$POD_NAME" ]; then
-  echo "Error: No pod with prefix redis-enterprise-cluster was created."
+if [ "$STATUS" != "1" ]; then
+  echo "Error: Redis Enterprise operator did not become ready."
+  exit 1
+fi
+
+kubectl apply -f rdi-rec.yaml -n rdi
+CLUSTER_NAME=$(grep '^  name:' rdi-rec.yaml | awk '{print $2}')
+NUM_NODES=$(grep '^  nodes:' rdi-rec.yaml | awk '{print $2}')
+
+echo "Waiting for $NUM_NODES pods from Redis Enterprise Cluster to be running..."
+
+for attempt in {1..60}; do
+  READY_COUNT=0
+  for i in $(seq 0 $(($NUM_NODES-1))); do
+    POD="${CLUSTER_NAME}-${i}"
+    STATUS=$(kubectl get pod "$POD" -n rdi --no-headers 2>/dev/null | awk '{print $3}')
+    if [ "$STATUS" = "Running" ]; then
+      READY_COUNT=$((READY_COUNT+1))
+    fi
+  done
+
+  if [ "$READY_COUNT" -eq "$NUM_NODES" ]; then
+    echo "All $NUM_NODES pods from Redis Enterprise Cluster are running."
+    break
+  fi
+
+  echo "Currently $READY_COUNT/$NUM_NODES pods from Redis Enterprise Cluster are running. Retrying in 5s..."
+  sleep 5
+done
+
+if [ "$READY_COUNT" -ne "$NUM_NODES" ]; then
+  echo "Error: Not all pods from Redis Enterprise Cluster are running after waiting."
   exit 1
 fi
 

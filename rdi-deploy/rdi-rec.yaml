@@ -1,6 +1,6 @@
 apiVersion: "app.redislabs.com/v1"
 kind: "RedisEnterpriseCluster"
 metadata:
-  name: redis-enterprise-cluster-node
+  name: redis-enterprise-cluster
 spec:
   nodes: 1
