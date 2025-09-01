@@ -1,4 +1,4 @@
-# Don't Let Slow Apps Ruin your Business!
+# Don't let slow apps ruin your business!
 
 Developers often use disk-based databases (PostgreSQL, MongoDB, and Oracle) as the single source of truth for data because they offer widely adopted programming models. However, despite their popularity, most suffer from one fundamental problem: the database becomes slower as more data is stored. To mitigate this problem, [Redis](https://redis.io/open-source) is often used as a cache layer to speed up read queries and offload the database load considerably. This approach helps companies to save money by eliminating the usage of expensive read replicas. But how do we continuously move the data from the database to Redis without writing tons of code, using different distributed systems, and wasting lots of time?
 
@@ -24,7 +24,7 @@ To deploy RDI, you'll need a Kubernetes (K8S) cluster. This workflow ensures all
 Once your K8S cluster is ready, deployment is automated using shell scripts in the `rdi-deploy` folder.
 
 
-### 1. 🏠 Running RDI on K8S with a Local Database
+### 1. 🏠 Running RDI on K8S with a local database
 
 This option deploys RDI on K8S along with its backend database. This is ideal if you want an all-inclusive installation of RDI. This option also saves you from spinning up a database on Redis Cloud, which can incur costs.
 
@@ -84,7 +84,7 @@ cd rdi-deploy
 ./rdi-undeploy-localdb.sh
 ```
 
-### 2. ☁️ Running RDI on K8S with a Database on Redis Cloud
+### 2. ☁️ Running RDI on K8S with a database on Redis Cloud
 
 This option deploys RDI on K8S and a backend database running on Redis Cloud. This is ideal if you want an RDI installation with a database that can scale to your needs, especially if you plan to extend this workload to perform intensive data processing from a source database.
 
