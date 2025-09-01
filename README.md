@@ -304,7 +304,7 @@ Once you have finished updating the variables, go ahead and deploy the pipeline.
 
 ![Pipeline status!](/images/ri-pipeline-status.png "Pipeline status")
 
-The pipeline should report `78` records inserted into the target database and a unique counter for each source table viewed as a data stream. This means your RDI deployment is working as expected. At this point, whatever data you write into the source database will be automatically streamed to Redis almost instantly. You can verify this by accessing your target database in Redis Cloud.
+The pipeline should report `78 records` inserted into the target database and a unique counter for each source table viewed as a data stream. This means your RDI deployment is working as expected. At this point, whatever data you write into the source database will instantly stream to Redis. You can verify this by accessing your target database in Redis Cloud.
 
 Access your database using the Redis Cloud console. Then click `Connect` and `Open in desktop`.
 
