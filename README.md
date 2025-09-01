@@ -252,7 +252,7 @@ terraform destroy -auto-approve
 
 ## ⚡ Using RDI for data streaming
 
-Now that everything has been properly deployed, you can start the fun part—using with RDI to stream database changes.
+Now that everything has been properly deployed, you can start the fun part—using RDI to stream database changes from the source database to the target database.
 
 In this section, you will:
 
