@@ -316,7 +316,7 @@ This should open your target database on Redis Insight, allowing you to visualiz
 
 ![TargetDB data!](/images/targetdb-data.png "TargetDB data")
 
-These `78 keys` represents the initial snapshot RDI performs in the source database to create the respective data streams. Once created, any data written in the source database should emit an event that RDI will capture and stream into the target database. This includes any INSERT, UPDATE, and DELETE operations. To verify this, you can use the scripts [demo-add-user.sql](./demo-add-user.sql), [demo-modify-user.sql](./demo-modify-user.sql), and [demo-multiple-users.sql](./demo-multiple-users.sql).
+These `78 keys` represents the initial snapshot RDI performs in the source database to create the respective data streams. Once created, any data written in the source database should emit an event that RDI will capture and stream into the target database. This includes any **INSERT**, **UPDATE**, and **DELETE** operations. To verify this, you can use the script [demo-multiple-users.sql](./demo-multiple-users.sql) that adds roughly `50` users into the table `user`.
 
 ## License
 
