@@ -326,7 +326,7 @@ First, go to Redis Insight and stop and reset your data pipeline. This will allo
 
 ![Custom job!](/images/ri-custom-job.png "Custom job")
 
-This job performs three operations, all related to the `user` table. First, it changes the data's output from Hashes to JSON. This is defined by the section `output` in the job. Second, it adds a new field into the target called `display_name` that will have as its value the values `first_name` and `last_name` concatenated. Third, it will add another field called `user_type` with two possible values: `internal` or `external`, depending on the user's email hostname.
+This job performs three operations, all related to the `user` table. First, it changes the data's output from [Hashes](https://redis.io/docs/latest/develop/data-types/hashes) to [JSON](https://redis.io/docs/latest/develop/data-types/json). Second, it adds a new field into the target called `display_name` that will have as its value the values `first_name` and `last_name` concatenated. Third, it will add another field called `user_type` with two possible values: `internal` or `external`, depending on the user's email hostname.
 
 Let's verify this. On Redis Insight, start your data pipeline again so any new data can be streamed into the target. Now use the script [demo-add-user.sql](./demo-add-user.sql) to insert a new row into the table `user`. Once you execute that script, check Redis Insight and observe the keys from your target database. You should have a new key with a JSON version of the user.
 
