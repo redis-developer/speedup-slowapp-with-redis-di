@@ -57,8 +57,8 @@ You should see the following output:
 
 ```sh
 NAME    NAMESPACE       REVISION        UPDATED                                 STATUS          CHART           APP VERSION
-default rdi             1               2025-08-31 20:41:59.929005297 +0000 UTC deployed        pipeline-0.0.0  0.0.0      
-rdi     rdi             1               2025-08-31 16:41:47.254181 -0400 EDT    deployed        rdi-1.14.0
+default rdi             1               2025-09-02 18:27:13.348276876 +0000 UTC deployed        pipeline-0.0.0  0.0.0      
+rdi     rdi             1               2025-09-02 14:27:02.228638 -0400 EDT    deployed        rdi-1.14.0                 
 ```
 
 List the deployed pods to check their statuses:
@@ -70,12 +70,15 @@ kubectl get pod -n rdi
 You should see an output similar to this:
 
 ```sh
-NAME                                    READY   STATUS    RESTARTS   AGE
-collector-api-66f58f58c7-w96qm          1/1     Running   0          69s
-rdi-api-76f894cc77-lg99q                1/1     Running   0          78s
-rdi-metrics-exporter-6656695547-b76tm   1/1     Running   0          78s
-rdi-operator-7c994f8fc8-gscmf           1/1     Running   0          78s
-rdi-reloader-546c9cd849-2d8kk           1/1     Running   0          78s
+NAME                                                        READY   STATUS    RESTARTS   AGE
+collector-api-66f58f58c7-kl6ph                              1/1     Running   0          30s
+rdi-api-76f894cc77-xh4sp                                    1/1     Running   0          37s
+rdi-metrics-exporter-6656695547-46dqq                       1/1     Running   0          37s
+rdi-operator-7c994f8fc8-dfdhb                               1/1     Running   0          37s
+rdi-reloader-546c9cd849-9wn6z                               1/1     Running   0          37s
+redis-enterprise-cluster-0                                  2/2     Running   0          2m12s
+redis-enterprise-cluster-services-rigger-5f698b9c75-ftw7g   1/1     Running   0          2m13s
+redis-enterprise-operator-7cdbb7cfb8-vwd5h                  2/2     Running   0          2m18s
 ```
 
 To undeploy and clean up all resources, run:
@@ -136,8 +139,8 @@ You should see the following output:
 
 ```sh
 NAME    NAMESPACE       REVISION        UPDATED                                 STATUS          CHART           APP VERSION
-default rdi             1               2025-08-31 20:41:59.929005297 +0000 UTC deployed        pipeline-0.0.0  0.0.0      
-rdi     rdi             1               2025-08-31 16:41:47.254181 -0400 EDT    deployed        rdi-1.14.0
+default rdi             1               2025-09-02 18:32:27.590886466 +0000 UTC deployed        pipeline-0.0.0  0.0.0      
+rdi     rdi             1               2025-09-02 14:32:15.29309 -0400 EDT     deployed        rdi-1.14.0                 
 ```
 
 List the deployed pods to check their statuses:
@@ -150,11 +153,11 @@ You should see an output similar to this:
 
 ```sh
 NAME                                    READY   STATUS    RESTARTS   AGE
-collector-api-66f58f58c7-w96qm          1/1     Running   0          69s
-rdi-api-76f894cc77-lg99q                1/1     Running   0          78s
-rdi-metrics-exporter-6656695547-b76tm   1/1     Running   0          78s
-rdi-operator-7c994f8fc8-gscmf           1/1     Running   0          78s
-rdi-reloader-546c9cd849-2d8kk           1/1     Running   0          78s
+collector-api-66f58f58c7-jw954          1/1     Running   0          36s
+rdi-api-76f894cc77-v4q57                1/1     Running   0          44s
+rdi-metrics-exporter-6656695547-pzfsk   1/1     Running   0          44s
+rdi-operator-7c994f8fc8-vsrwh           1/1     Running   0          44s
+rdi-reloader-546c9cd849-6vmcm           1/1     Running   0          44s
 ```
 
 To undeploy and clean up all resources, run:
