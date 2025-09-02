@@ -101,7 +101,7 @@ export REDISCLOUD_ACCESS_KEY=<THIS_IS_GOING_TO_BE_YOUR_API_ACCOUNT_KEY>
 export REDISCLOUD_SECRET_KEY=<THIS_IS_GOING_TO_BE_ONE_API_USER_KEY>
 ```
 
-You also need to customize some Terraform variables before running the script. update the file `rdi-deploy/terraform.tfvars` and update the values of the following variables:
+You also need to customize some Terraform variables before running the script. update the file [rdi-deploy/terraform.tfvars](./rdi-deploy/terraform.tfvars) and update the values of the following variables:
 
 * payment_card_type
 * payment_card_last_four
@@ -222,7 +222,7 @@ To create the target Redis database:
 	cd target-db
 	```
 
-2. Edit the file `target-db/terraform.tfvars` and update the variables `essentials_plan_cloud_provider` and `essentials_plan_cloud_region` with the options of your choice.
+2. Edit the file [target-db/terraform.tfvars](./target-db/terraform.tfvars) and update the variables `essentials_plan_cloud_provider` and `essentials_plan_cloud_region` with the options of your choice.
 
 3. Initialize Terraform:
 
@@ -277,7 +277,7 @@ Once you have logged in, you will access the object explorer. The first time you
 - User: `postgres`
 - Password: `postgres`
 
-Then, navigate to the folder Postgres > Databases > postgres > Schemas > public > Tables. You should see the following tables:
+Then, navigate to Postgres > Databases > postgres > Schemas > public > Tables. You should see the following tables:
 
 ![Postgres tables!](/images/pgAdmin-view-data.png "Postgres tables")
 
@@ -289,9 +289,9 @@ Click in the `Add RDI Endpoint` button. The folllowing screen will show up:
 
 ![RDI endpoint!](/images/ri-rdi-endpoint.png "RDI endpoint")
 
-Fill the screen with the values shown in the picture above. As for the password, you can retrieve what password to set in the file `rdi-deploy/rdi-values.yaml`. The value set in the `connection.password` field is what you should use to register the RDI endpoint.
+Fill the screen with the values shown in the picture above. As for the password, you can retrieve what password to set in the file `rdi-deploy/rdi-values.yaml`. The value set in the `connection.password` field is what you should use to register the RDI endpoint. Please note that the file `rdi-deploy/rdi-values.yaml` is created when you deploy RDI. If this file doesn't exist, return to the section [Deploying RDI](#-deploying-rdi).
 
-Once you access your RDI endpoint, you can start the configuration of your pipeline. For this step, you can use the code available at the file `pipeline-config.yaml`. You should add this code to the pipeline editor.
+Once you access your RDI endpoint, you can start the configuration of your pipeline. For this step, you can use the code available at the file [pipeline-config.yaml](./pipeline-config.yaml). You should add this code to the pipeline editor.
 
 ![Pipeline configuration!](/images/ri-new-pipeline.png "Pipeline configuration")
 
@@ -315,6 +315,8 @@ Access your database using the Redis Cloud console. Then click `Connect` and `Op
 This should open your target database on Redis Insight, allowing you to visualize your data.
 
 ![TargetDB data!](/images/targetdb-data.png "TargetDB data")
+
+These `78 keys` represents the initial snapshot RDI performs in the source database to create the respective data streams. Once created, any data written in the source database should emit an event that RDI will capture and stream into the target database. This includes any INSERT, UPDATE, and DELETE operations. To verify this, you can use the scripts [demo-add-user.sql](./demo-add-user.sql), [demo-modify-user.sql](./demo-modify-user.sql), and [demo-multiple-users.sql](./demo-multiple-users.sql).
 
 ## License
 
