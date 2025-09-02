@@ -119,17 +119,28 @@ DECLARE
         'Holmes', 'Rice', 'Robertson', 'Hunt', 'Black', 'Daniels', 'Palmer', 'Mills', 'Nichols', 'Grant'
     ];
     user_id INT;
+    selected_first_name TEXT;
+    selected_last_name TEXT;
+    generated_username TEXT;
 BEGIN
     start_time := clock_timestamp();
     end_time := clock_timestamp() + (seconds_to_run || ' seconds')::INTERVAL;
     
     WHILE clock_timestamp() < end_time LOOP
+        selected_first_name := first_names[1 + floor(random() * array_length(first_names, 1))];
+        selected_last_name := last_names[1 + floor(random() * array_length(last_names, 1))];
+        
+        generated_username := LOWER(
+            RPAD(LEFT(selected_first_name, 2), 2, '0') || 
+            RPAD(LEFT(selected_last_name, 6), 6, '0')
+        );
+        
         INSERT INTO "user" (username, first_name, last_name, email)
         VALUES (
-            'user_' || nextval('user_id_seq'),
-            first_names[1 + floor(random() * array_length(first_names, 1))],
-            last_names[1 + floor(random() * array_length(last_names, 1))],
-            'user_' || currval('user_id_seq') || '@example.com'
+            generated_username,
+            selected_first_name,
+            selected_last_name,
+            generated_username || '@example.com'
         )
         RETURNING id INTO user_id;
         

@@ -1,3 +1,3 @@
 UPDATE "user" SET
-  email = 'riferrei@riferrei.com'
+  email = 'riferrei@acme.com'
 WHERE id = 1;
