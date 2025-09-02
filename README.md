@@ -332,7 +332,7 @@ Let's verify this. On Redis Insight, start your data pipeline again so any new d
 
 ![New JSON key!](/images/ri-new-json-key.png "New JSON key")
 
-However, the user type is still `internal` as their email contains `@example.com.` Let's change the email in the source table to trigger the update and the execution of the job transformation. Use the script demo-modify-user.sql to update the user's email. You may need to identify which `id` is associated with the user before running the script, as you may need to update the **WHERE** clause of the SQL statement. Once you execute the script, you should immediately see the update in the target database.
+However, the user type is still `internal` as their email contains `@example.com.` Let's change the email in the source table to trigger the update and the execution of the job transformation. Go ahead and use the script [demo-modify-user.sql](./demo-modify-user.sql) to update the user's email. You may need to identify which `id` is associated with the user before running the script, as you may need to update the **WHERE** clause of the SQL statement. Once you execute the script, you should immediately see the update in the target database.
 
 ![User type!](/images/ri-user-type.png "User type")
 
