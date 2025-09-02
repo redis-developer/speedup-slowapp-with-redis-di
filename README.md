@@ -1,4 +1,4 @@
-# Take me down to Paradise City where the database status is green and my Redis cache is speedy 🎶
+# Take me down to Paradise City where the database status is green and my Redis is speedy 🎶
 
 Developers often use disk-based databases (PostgreSQL, MongoDB, and Oracle) as the single source of truth for data because they offer widely adopted programming models. However, despite their popularity, most suffer from one fundamental problem: the database becomes slower as more data is stored. To mitigate this problem, [Redis](https://redis.io/open-source) is used as a caching layer to speed up read queries and considerably offload the database load. This approach helps companies to save money by eliminating the use of expensive read replicas. But how do we continuously move the data from the database to Redis without writing tons of code, using different distributed systems, and wasting lots of time?
 
