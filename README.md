@@ -101,7 +101,7 @@ export REDISCLOUD_ACCESS_KEY=<THIS_IS_GOING_TO_BE_YOUR_API_ACCOUNT_KEY>
 export REDISCLOUD_SECRET_KEY=<THIS_IS_GOING_TO_BE_ONE_API_USER_KEY>
 ```
 
-You also need to customize some Terraform variables before running the script. update the file [rdi-deploy/terraform.tfvars](./rdi-deploy/terraform.tfvars) and update the values of the following variables:
+You also need to customize some Terraform variables. Please update the file [rdi-deploy/terraform.tfvars](./rdi-deploy/terraform.tfvars) and change the values of the following variables:
 
 * payment_card_type
 * payment_card_last_four
