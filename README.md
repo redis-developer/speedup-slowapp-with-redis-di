@@ -318,6 +318,24 @@ This should open your target database on Redis Insight, allowing you to visualiz
 
 These `78 keys` represents the initial snapshot RDI performs in the source database to create the respective data streams. Once created, any data written in the source database should emit an event that RDI will capture and stream into the target database. This includes any **INSERT**, **UPDATE**, and **DELETE** operations. To verify this, you can use the script [demo-multiple-users.sql](./demo-multiple-users.sql) that adds roughly `50` users into the table `user`.
 
+## Adding transformation jobs
+
+One cool feature of RDI that you can leverage is the ability to transform data as it is streamed into the target database. You can create one or more [job files](https://redis.io/docs/latest/integrate/redis-data-integration/data-pipelines/transform-examples/) that will be used along with the data pipeline during the data streaming. Let's practice this with one example.
+
+First, go to Redis Insight and stop and reset your data pipeline. This will allow you to change your data pipeline without streaming any data. Click the plus sign under `Add transformation jobs` in `Pipeline Management`. Name this job `custom-job` and define it using the code available in the file [custom-job-v2.yaml](./custom-job-v2.yaml).
+
+![Custom job!](/images/ri-custom-job.png "Custom job")
+
+This job performs three operations, all related to the `user` table. First, it changes the data's output from Hashes to JSON. This is defined by the section `output` in the job. Second, it adds a new field into the target called `display_name` that will have as its value the values `first_name` and `last_name` concatenated. Third, it will add another field called `user_type` with two possible values: `internal` or `external`, depending on the user's email hostname.
+
+Let's verify this. On Redis Insight, start your data pipeline again so any new data can be streamed into the target. Now use the script [demo-add-user.sql](./demo-add-user.sql) to insert a new row into the table `user`. Once you execute that script, check Redis Insight and observe the keys from your target database. You should have a new key with a JSON version of the user.
+
+![New JSON key!](/images/ri-new-json-key.png "New JSON key")
+
+However, the user type is still `internal` as their email contains `@example.com.` Let's change the email in the source table to trigger the update and the execution of the job transformation. Use the script demo-modify-user.sql to update the user's email. You may need to identify which `id` is associated with the user before running the script, as you may need to update the **WHERE** clause of the SQL statement. Once you execute the script, you should immediately see the update in the target database.
+
+![User type!](/images/ri-user-type.png "User type")
+
 ## License
 
 This project is licensed under the **[MIT license](LICENSE)**.
