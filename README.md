@@ -318,7 +318,7 @@ This should open your target database on Redis Insight, allowing you to visualiz
 
 These `78 keys` represents the initial snapshot RDI performs in the source database to create the respective data streams. Once created, any data written in the source database should emit an event that RDI will capture and stream into the target database. This includes any **INSERT**, **UPDATE**, and **DELETE** operations. To verify this, you can use the script [demo-multiple-users.sql](./demo-multiple-users.sql) that adds roughly `50` users into the table `user`.
 
-## Adding transformation jobs
+## ⚙️ Adding transformation jobs
 
 One cool feature of RDI that you can leverage is the ability to transform data as it is streamed into the target database. You can create one or more [job files](https://redis.io/docs/latest/integrate/redis-data-integration/data-pipelines/transform-examples/) that will be used along with the data pipeline during the data streaming. Let's practice this with one example.
 
