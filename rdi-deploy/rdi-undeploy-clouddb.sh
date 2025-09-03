@@ -14,7 +14,7 @@ if [[ "$CURRENT_CONTEXT" == "minikube" ]]; then
 	echo "Your K8S cluster is minikube. Disabling the ingress addon..."
 	minikube addons disable ingress
 else
-	echo "Your K8S cluster is something else: $CURRENT_CONTEXT. Using helm charts to uninstall..."
+	echo "Your K8S cluster is $CURRENT_CONTEXT. Using helm charts to uninstall the ingress..."
 	helm uninstall ingress-nginx --namespace ingress-nginx
 fi
 

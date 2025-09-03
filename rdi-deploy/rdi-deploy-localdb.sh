@@ -7,7 +7,7 @@ if ! kubectl get pods -n ingress-nginx | grep -q ingress-nginx-controller; then
     echo "Your K8S cluster is minikube. Enabling the ingress addon..."
     minikube addons enable ingress
   else
-    echo "Your K8S cluster is something else: $CURRENT_CONTEXT. Using helm charts to install..."
+    echo "Your K8S cluster is $CURRENT_CONTEXT. Using helm charts to install the ingress..."
     helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
     helm repo update
     if ! helm list -n ingress-nginx | grep -q ingress-nginx; then
