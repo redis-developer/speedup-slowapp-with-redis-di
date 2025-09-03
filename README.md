@@ -21,7 +21,7 @@ This repository demonstrates how to install, deploy, and use RDI with a fairly r
 
 To deploy RDI, you'll need a Kubernetes (K8S) cluster. This workflow ensures all dependencies (Ingress, database, and RDI) are managed and deployed in the correct order, with secure configuration and easy cleanup. Though you can use any K8S distribution, you don't quite need a production-ready K8S cluster. Any local K8S deployment will suffice. Development clusters of K8S, like [Minikube](https://minikube.sigs.k8s.io/docs/start), [K3S](https://k3s.io), or [Docker Desktop](https://docs.docker.com/desktop/features/kubernetes), will do just fine.
 
-However, you must be mindful of the resources you dedicate to your K8S cluster. To execute this demo smoothly, you need at least `4` CPUs, `8 GB` of memory, and `25 GB` of disk. Anything less than this will cause the pods to continuously crash and be recreated, making your K8S cluster unstable. Once your K8S cluster is ready, deployment is automated using shell scripts in the `rdi-deploy` folder.
+However, you must be mindful of the resources you dedicate to your K8S cluster. To execute this demo smoothly, you need at least `4` CPUs, `8 GB` of memory, and `25 GB` of disk. Anything less than this will cause the pods to continuously crash and be recreated, making your K8S cluster unstable. Once your K8S cluster is up and running, the RDI deployment is fully automated using scripts in the `rdi-deploy` folder.
 
 
 ### 1. 🏠 Running RDI on K8S with a local database
