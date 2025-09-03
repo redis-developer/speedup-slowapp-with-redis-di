@@ -302,14 +302,14 @@ Once you access your RDI endpoint, you can start the configuration of your pipel
 
 ![Pipeline configuration!](/images/ri-new-pipeline.png "Pipeline configuration")
 
+> 💡 **Tip**: Depending on which K8S cluster you are running, RDI won't be able to access your PostgreSQL database using `localhost`. This is undoubtedly the case with minikube. If you're using minikube, replace `localhost` with `host.minikube.internal` as documented [here](https://minikube.sigs.k8s.io/docs/handbook/host-access).
+
 Replace the values of the variables `${REDIS_DATABASE_HOST}` and `${REDIS_DATABASE_PORT}` with the values from the target database you created on Redis Cloud. You can retrieve these values in your Redis Cloud account using the console. However, an easiest way is by running the command `terraform output` in the `target-db` folder. You should see an output similar to this:
 
 ```sh
 redis_database_host = "redis-00000.c84.us-east-1-2.ec2.redns.redis-cloud.com"
 redis_database_port = "00000"
 ```
-
-> 💡 **Tip**: Depending on which K8S cluster you are running, RDI won't be able to access your PostgreSQL database using `localhost`. This is undoubtedly the case with minikube. If you're using minikube, replace `localhost` with `host.minikube.internal` as documented [here](https://minikube.sigs.k8s.io/docs/handbook/host-access).
 
 Once you have finished updating the variables, go ahead and deploy the pipeline. This process may take a few minutes, as RDI performs an initial snapshot of the source database to create a data stream for each table found and start the streaming. Once the process finishes, you should be able to navigate to the `Pipeline Status` tab to check the status of your pipeline.
 
