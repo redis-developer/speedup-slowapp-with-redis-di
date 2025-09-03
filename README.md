@@ -2,7 +2,7 @@
 
 Developers often use disk-based databases (PostgreSQL, MongoDB, and Oracle) as the single source of truth for data because they offer widely adopted programming models. However, despite their popularity, most suffer from one fundamental problem: the database becomes slower as more data is stored. To mitigate this problem, [Redis](https://redis.io/open-source) is used as a caching layer to speed up read queries and considerably offload the database load. This approach helps companies to save money by eliminating the use of expensive read replicas. But how do we continuously move the data from the database to Redis without writing tons of code, using different distributed systems, and wasting lots of time?
 
-![Streaming data with RDI!](/images/architecture.png "Streaming data with RDI")
+![RDI architecture!](/images/rdi-architecture.png "RDI architecture")
 
 You can use [Redis Data Integration (RDI)](https://redis.io/data-integration) for this. RDI updates Redis with any changes made in a source database, using a [Change Data Capture (CDC)](https://en.wikipedia.org/wiki/Change_data_capture) mechanism. RDI is designed to support apps that use a disk-based database as the system of record, but it must also be fast and scalable. This is a common requirement for mobile, web, and AI apps with a rapidly growing number of users; the performance of the central database is acceptable at first, but it will soon struggle to handle the increasing demand without a cache.
 
@@ -21,7 +21,7 @@ This repository demonstrates how to install, deploy, and use RDI with a fairly r
 
 To deploy RDI, you'll need a Kubernetes (K8S) cluster. This workflow ensures all dependencies (Ingress, database, and RDI) are managed and deployed in the correct order, with secure configuration and easy cleanup. Though you can use any K8S distribution, you don't quite need a production-ready K8S cluster. Any local K8S deployment will suffice. Development clusters of K8S, like [Minikube](https://minikube.sigs.k8s.io/docs/start), [K3S](https://k3s.io), or [Docker Desktop](https://docs.docker.com/desktop/features/kubernetes), will do just fine.
 
-However, you must be mindful of the resources you dedicate to your K8S cluster. To execute this demo smoothly, you must dedicate at least **4 CPUs**, **8 GB of memory**, and **25 GB of disk** to the underlying infrastructure that runs your cluster. Anything less than this will cause the pods to continuously crash and be recreated, making your K8S cluster unstable. Please note that these hardware requirements are not for the host machine that runs your K8S cluster, but for the K8S cluster itself. Once your K8S cluster runs, the RDI deployment is fully automated using scripts in the `rdi-deploy` folder.
+However, you must be mindful of the resources you dedicate to your K8S cluster. To execute this demo smoothly, you must dedicate at least **4 CPUs**, **8 GB of memory**, and **25 GB of disk** to the underlying infrastructure that runs your cluster. Anything less than this will cause the pods to continuously crash and be recreated, making your K8S cluster unstable. Please note that these hardware requirements are not for the host machine that runs your cluster, but for the cluster itself. Once your K8S cluster runs, the RDI deployment is fully automated using scripts in the `rdi-deploy` folder.
 
 ### 1. 🏠 Running RDI on K8S with a local database
 
