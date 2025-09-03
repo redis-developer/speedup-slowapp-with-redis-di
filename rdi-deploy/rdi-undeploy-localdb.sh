@@ -10,7 +10,14 @@ kubectl delete -f rdi-db.yaml -n rdi
 kubectl delete -f rdi-rec.yaml -n rdi
 
 ### Uninstall the ingress controller
-helm uninstall ingress-nginx --namespace ingress-nginx
+CURRENT_CONTEXT=$(kubectl config current-context)
+if [[ "$CURRENT_CONTEXT" == "minikube" ]]; then
+	echo "Your K8S cluster is minikube. Disabling the ingress addon..."
+	minikube addons disable ingress
+else
+	echo "Your K8S cluster is something else: $CURRENT_CONTEXT. Using helm charts to uninstall..."
+	helm uninstall ingress-nginx --namespace ingress-nginx
+fi
 
 echo "Waiting for ingress-nginx-controller deployment to be deleted..."
 while kubectl get deployment ingress-nginx-controller -n ingress-nginx >/dev/null 2>&1; do

@@ -1,13 +1,22 @@
 #!/bin/bash
 
 ### Install the nginx ingress controller
-helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
-helm repo update
-if ! helm list -n ingress-nginx | grep -q ingress-nginx; then
-  if ! kubectl get namespace ingress-nginx >/dev/null 2>&1; then
-    kubectl create namespace ingress-nginx
+if ! kubectl get pods -n ingress-nginx | grep -q ingress-nginx-controller; then
+  CURRENT_CONTEXT=$(kubectl config current-context)
+  if [[ "$CURRENT_CONTEXT" == "minikube" ]]; then
+    echo "Your K8S cluster is minikube. Enabling the ingress addon..."
+    minikube addons enable ingress
+  else
+    echo "Your K8S cluster is something else: $CURRENT_CONTEXT. Using helm charts to install..."
+    helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
+    helm repo update
+    if ! helm list -n ingress-nginx | grep -q ingress-nginx; then
+      if ! kubectl get namespace ingress-nginx >/dev/null 2>&1; then
+        kubectl create namespace ingress-nginx
+      fi
+      helm install ingress-nginx ingress-nginx/ingress-nginx --namespace ingress-nginx
+    fi
   fi
-  helm install ingress-nginx ingress-nginx/ingress-nginx --namespace ingress-nginx
 fi
 
 echo "Waiting for nginx ingress controller to be ready..."

@@ -294,6 +294,10 @@ Click in the `Add RDI Endpoint` button. The folllowing screen will show up:
 
 Fill the screen with the values shown in the picture above. As for the password, you can retrieve what password to set in the file `rdi-deploy/rdi-values.yaml`. The value set in the `connection.password` field is what you should use to register the RDI endpoint. Please note that the file `rdi-deploy/rdi-values.yaml` is created when you deploy RDI. If this file doesn't exist, return to the section [Deploying RDI](#-deploying-rdi).
 
+
+> 💡 **Tip**: Depending on which K8S cluster you are running, Redis Insight won't be able to access your RDI deployment using `https://localhost`. This is undoubtedly the case with Minikube. If 
+you're using Minikube, you must manually create a tunnel to expose the RDI APIs to the external world. Open a new terminal and run `minikube tunnel`. It will ask you for your host password. Leave the terminal open throughout the duration of the demo. You can find more information about this [here](https://minikube.sigs.k8s.io/docs/commands/tunnel).
+
 Once you access your RDI endpoint, you can start the configuration of your pipeline. For this step, you can use the code available at the file [pipeline-config.yaml](./pipeline-config.yaml). You should add this code to the pipeline editor.
 
 ![Pipeline configuration!](/images/ri-new-pipeline.png "Pipeline configuration")
@@ -304,6 +308,8 @@ Replace the values of the variables `${REDIS_DATABASE_HOST}` and `${REDIS_DATABA
 redis_database_host = "redis-00000.c84.us-east-1-2.ec2.redns.redis-cloud.com"
 redis_database_port = "00000"
 ```
+
+> 💡 **Tip**: Depending on which K8S cluster you are running, RDI won't be able to access your PostgreSQL database using `localhost`. This is undoubtedly the case with minikube. If you're using minikube, replace `localhost` with `host.minikube.internal` as documented [here](https://minikube.sigs.k8s.io/docs/handbook/host-access).
 
 Once you have finished updating the variables, go ahead and deploy the pipeline. This process may take a few minutes, as RDI performs an initial snapshot of the source database to create a data stream for each table found and start the streaming. Once the process finishes, you should be able to navigate to the `Pipeline Status` tab to check the status of your pipeline.
 
