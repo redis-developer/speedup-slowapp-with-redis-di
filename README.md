@@ -295,8 +295,8 @@ Click in the `Add RDI Endpoint` button. The folllowing screen will show up:
 Fill the screen with the values shown in the picture above. As for the password, you can retrieve what password to set in the file `rdi-deploy/rdi-values.yaml`. The value set in the `connection.password` field is what you should use to register the RDI endpoint. Please note that the file `rdi-deploy/rdi-values.yaml` is created when you deploy RDI. If this file doesn't exist, return to the section [Deploying RDI](#-deploying-rdi).
 
 
-> 💡 **Tip**: Depending on which K8S cluster you are running, Redis Insight won't be able to access your RDI deployment using `https://localhost`. This is undoubtedly the case with Minikube. If 
-you're using Minikube, you must manually create a tunnel to expose the RDI APIs to the external world. Open a new terminal and run `minikube tunnel`. It will ask you for your host password. Leave the terminal open throughout the duration of the demo. You can find more information about this [here](https://minikube.sigs.k8s.io/docs/commands/tunnel).
+> 💡 **Tip**: Depending on which K8S cluster you are running, Redis Insight won't be able to access your RDI deployment using `https://localhost`. This is undoubtedly the case with minikube. If 
+you're using minikube, you must manually create a tunnel to expose the RDI APIs to the external world. Open a new terminal and run `minikube tunnel`. It will ask you for your host password. Leave the terminal open throughout the duration of the demo. You can find more information about this [here](https://minikube.sigs.k8s.io/docs/commands/tunnel).
 
 Once you access your RDI endpoint, you can start the configuration of your pipeline. For this step, you can use the code available at the file [pipeline-config.yaml](./pipeline-config.yaml). You should add this code to the pipeline editor.
 
