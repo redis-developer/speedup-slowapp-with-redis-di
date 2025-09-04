@@ -27,7 +27,7 @@ However, you must be mindful of the resources you dedicate to your K8S cluster. 
 
 ### 🏠 Running RDI on K8S with a local database
 
-This option deploys RDI on K8S along with its backend database. This is ideal if you want an all-inclusive installation of RDI. This option also saves you from spinning up a database on Redis Cloud, which can incur costs.
+This option deploys RDI on K8S along with its backend database. This is ideal if you want an all-batteries-included installation of RDI. This option also saves you from spinning up a database on Redis Cloud, which can incur costs.
 
 To deploy RDI with a local database, open a terminal and run:
 
