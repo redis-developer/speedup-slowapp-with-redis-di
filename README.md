@@ -25,7 +25,7 @@ To deploy RDI, you'll need a Kubernetes (K8S) cluster. This workflow ensures all
 
 However, you must be mindful of the resources you dedicate to your K8S cluster. To execute this demo smoothly, you must dedicate at least **4 CPUs**, **8 GB of memory**, and **25 GB of disk** to the underlying infrastructure that runs your cluster. Anything less than this will cause the pods to continuously crash and be recreated, making your K8S cluster unstable. Please note that these hardware requirements are not for the host machine that runs your cluster, but for the cluster itself. Once your K8S cluster runs, the RDI deployment is fully automated using scripts in the `rdi-deploy` folder.
 
-### 1. 🏠 Running RDI on K8S with a local database
+### 🏠 Running RDI on K8S with a local database
 
 This option deploys RDI on K8S along with its backend database. This is ideal if you want an all-inclusive installation of RDI. This option also saves you from spinning up a database on Redis Cloud, which can incur costs.
 
@@ -90,7 +90,7 @@ cd rdi-deploy
 ./rdi-undeploy-localdb.sh
 ```
 
-### 2. ☁️ Running RDI on K8S with a database on Redis Cloud
+### ☁️ Running RDI on K8S with a database on Redis Cloud
 
 This option deploys RDI on K8S and a backend database running on Redis Cloud. This is ideal if you want an RDI installation with a database that can scale to your needs, especially if you plan to extend this workload to perform intensive data processing from a source database.
 
