@@ -3,9 +3,12 @@
 ### Install the nginx ingress controller
 if ! kubectl get pods -n ingress-nginx | grep -q ingress-nginx-controller; then
   CURRENT_CONTEXT=$(kubectl config current-context)
-  if [[ "$CURRENT_CONTEXT" == "minikube" ]]; then
+  if [[ "$CURRENT_CONTEXT" == *minikube* ]]; then
     echo "Your K8S cluster is minikube. Enabling the ingress addon..."
     minikube addons enable ingress
+  elif [[ "$CURRENT_CONTEXT" == *kind* ]]; then
+    echo "Your K8S cluster is kind. Using kubectl to install the ingress..."
+    kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/kind/deploy.yaml
   else
     echo "Your K8S cluster is $CURRENT_CONTEXT. Using helm charts to install the ingress..."
     helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx

@@ -21,7 +21,7 @@ This repository demonstrates how to install, deploy, and use RDI with a fairly r
 
 ## 🚀 Deploying RDI
 
-To deploy RDI, you'll need a Kubernetes (K8S) cluster. This workflow ensures all dependencies (Ingress, database, and RDI) are managed and deployed in the correct order, with secure configuration and easy cleanup. Though you can use any K8S distribution, you don't quite need a production-ready K8S cluster. Any local K8S deployment will suffice. Development clusters of K8S, like [Minikube](https://minikube.sigs.k8s.io/docs/start), [K3S](https://k3s.io), or [Docker Desktop](https://docs.docker.com/desktop/features/kubernetes), will do just fine.
+To deploy RDI, you'll need a Kubernetes (K8S) cluster. This workflow ensures all dependencies (Ingress, database, and RDI) are managed and deployed in the correct order, with secure configuration and easy cleanup. Though you can use any K8S distribution, you don't quite need a production-ready K8S cluster. Any local K8S deployment will suffice. Development clusters of K8S, like [minikube](https://minikube.sigs.k8s.io/docs/start), [kind](https://kind.sigs.k8s.io), or [Docker Desktop](https://docs.docker.com/desktop/features/kubernetes), will do just fine.
 
 However, you must be mindful of the resources you dedicate to your K8S cluster. To execute this demo smoothly, you must dedicate at least **4 CPUs**, **8 GB of memory**, and **25 GB of disk** to the underlying infrastructure that runs your cluster. Anything less than this will cause the pods to continuously crash and be recreated, making your K8S cluster unstable. Please note that these hardware requirements are not for the host machine that runs your cluster, but for the cluster itself. Once your K8S cluster runs, the RDI deployment is fully automated using scripts in the `rdi-deploy` folder.
 
@@ -47,6 +47,8 @@ This script will:
 - Generate a secure JWT key to be used with RDI API
 - Create a custom `rdi-values.yaml` for Helm deployment
 - Install RDI using Helm with the generated values
+
+> 💡 **Tip**: The script has a 5-minute wait strategy for most of the resources created. If some resource takes more than 5 minutes, the script will halt. If this happens, don't worry. Just execute the script again, and it will pick up where it left off.
 
 To monitor the deployment:
 
@@ -129,6 +131,8 @@ This script will:
 - Generate a secure JWT key to be used with RDI API
 - Create a custom `rdi-values.yaml` for Helm deployment
 - Install RDI using Helm with the generated values
+
+> 💡 **Tip**: The script has a 5-minute wait strategy for most of the resources created. If some resource takes more than 5 minutes, the script will halt. If this happens, don't worry. Just execute the script again, and it will pick up where it left off.
 
 To monitor the deployment:
 
@@ -303,7 +307,7 @@ Once you access your RDI endpoint, you can start the configuration of your pipel
 
 ![Pipeline configuration!](/images/ri-new-pipeline.png "Pipeline configuration")
 
-> 💡 **Tip**: Depending on which K8S cluster you are running, RDI won't be able to access your PostgreSQL database using `localhost`. This is undoubtedly the case with minikube. If you're using minikube, replace `localhost` with `host.minikube.internal` as documented [here](https://minikube.sigs.k8s.io/docs/handbook/host-access).
+> 💡 **Tip**: Depending on which K8S cluster you are running, RDI won't be able to access your PostgreSQL database using `localhost`. This is undoubtedly the case with minikube and kind. If you're using minikube, replace `localhost` with `host.minikube.internal`. Otherwise, if you're using kind, replace `localhost` with `host.docker.internal`.
 
 Replace the values of the variables `${REDIS_DATABASE_HOST}` and `${REDIS_DATABASE_PORT}` with the values from the target database you created on Redis Cloud. You can retrieve these values in your Redis Cloud account using the console. However, an easiest way is by running the command `terraform output` in the `target-db` folder. You should see an output similar to this:
 
