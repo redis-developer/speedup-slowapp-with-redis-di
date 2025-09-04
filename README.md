@@ -48,7 +48,7 @@ This script will:
 - Create a custom `rdi-values.yaml` for Helm deployment
 - Install RDI using Helm with the generated values
 
-> 💡 **Tip**: The script has a 5-minute wait strategy for most of the resources created. If some resource takes more than 5 minutes, the script will halt. If this happens, don't worry. Just execute the script again, and it will pick up where it left off.
+The script has a 5-minute wait strategy for most of the resources created. If some resource takes more than 5 minutes, the script will halt. If this happens, don't worry. Just execute the script again, and it will pick up where it left off.
 
 To monitor the deployment:
 
@@ -132,7 +132,7 @@ This script will:
 - Create a custom `rdi-values.yaml` for Helm deployment
 - Install RDI using Helm with the generated values
 
-> 💡 **Tip**: The script has a 5-minute wait strategy for most of the resources created. If some resource takes more than 5 minutes, the script will halt. If this happens, don't worry. Just execute the script again, and it will pick up where it left off.
+The script has a 5-minute wait strategy for most of the resources created. If some resource takes more than 5 minutes, the script will halt. If this happens, don't worry. Just execute the script again, and it will pick up where it left off.
 
 To monitor the deployment:
 
